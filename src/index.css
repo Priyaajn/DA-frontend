@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: sans-serif;
+}
+
+body{
+  background-color: #F8F9FD;
+}
+
+.active hr{
+  display: block;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
