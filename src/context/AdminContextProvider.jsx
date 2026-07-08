@@ -6,8 +6,8 @@ export const AdminContext = createContext()
 
 const AdminContextProvider = (props) => {
 
-  // ✅ FIX: use env var like DoctorContext does (was hardcoded 'http://localhost:4000')
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
+  // ✅ FIX: use env var like DoctorContext does (was hardcoded 'https://da-backend-1.onrender.com')
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://da-backend-1.onrender.com'
 
   const [aToken, setAToken] = useState(localStorage.getItem('aToken') || '')
 
