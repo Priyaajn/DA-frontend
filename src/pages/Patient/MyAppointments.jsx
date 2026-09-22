@@ -197,27 +197,25 @@ const MyAppointments = () => {
               }
             )
 
+            // =========================
+            // PAYMENT SUCCESS
+            // =========================
+
             if (verifyData.success) {
 
               toast.success('Payment Successful ✅')
 
-              await getAppointmentsif (verifyData.success) {
+              // Immediately update the UI
+              setAppointments(prevAppointments =>
+                prevAppointments.map(apt =>
+                  apt._id === appointmentId
+                    ? { ...apt, payment: true }
+                    : apt
+                )
+              )
 
-    toast.success('Payment Successful ✅')
-
-    // Immediately update the paid appointment in the UI
-    setAppointments(prevAppointments =>
-        prevAppointments.map(apt =>
-            apt._id === appointmentId
-                ? { ...apt, payment: true }
-                : apt
-        )
-    )
-
-    // Also fetch fresh data from backend
-    await getAppointments()
-
-}()
+              // Fetch fresh data from backend
+              await getAppointments()
 
             } else {
 
@@ -333,6 +331,7 @@ const MyAppointments = () => {
             <div key={apt._id} style={card}>
 
               {/* Doctor Image */}
+
               <img
                 src={apt.docData?.image}
                 alt=""
@@ -346,6 +345,7 @@ const MyAppointments = () => {
               />
 
               {/* Doctor Info */}
+
               <div style={{ flex: 1 }}>
 
                 <p
@@ -395,6 +395,7 @@ const MyAppointments = () => {
               </div>
 
               {/* Status + Actions */}
+
               <div
                 style={{
                   display: 'flex',
@@ -499,6 +500,7 @@ const MyAppointments = () => {
               </div>
 
               {/* PRESCRIPTION */}
+
               {apt.isCompleted && prescriptions[apt._id] && (
 
                 <div
