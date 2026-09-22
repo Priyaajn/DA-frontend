@@ -201,7 +201,23 @@ const MyAppointments = () => {
 
               toast.success('Payment Successful ✅')
 
-              await getAppointments()
+              await getAppointmentsif (verifyData.success) {
+
+    toast.success('Payment Successful ✅')
+
+    // Immediately update the paid appointment in the UI
+    setAppointments(prevAppointments =>
+        prevAppointments.map(apt =>
+            apt._id === appointmentId
+                ? { ...apt, payment: true }
+                : apt
+        )
+    )
+
+    // Also fetch fresh data from backend
+    await getAppointments()
+
+}()
 
             } else {
 
