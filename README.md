@@ -120,7 +120,7 @@ ADMIN_PASSWORD=admin123
 ## ⚙️ Frontend .env Required Variables
 
 ```env
-VITE_BACKEND_URL=http://localhost:4000
+VITE_BACKEND_URL=https://da-backend-1.onrender.com
 VITE_RAZORPAY_KEY_ID=rzp_test_XXXX
 ```
 

@@ -201,7 +201,7 @@ const MyAppointments = () => {
 
               toast.success('Payment Successful ✅')
 
-              getAppointments()
+              await getAppointments()
 
             } else {
 
