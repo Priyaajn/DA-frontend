@@ -203,25 +203,36 @@ const MyAppointments = () => {
 
             if (verifyData.success) {
 
-              toast.success('Payment Successful ✅')
+    console.log('✅ PAYMENT VERIFIED:', verifyData)
+    console.log('💳 PAID APPOINTMENT ID:', appointmentId)
 
-              // Immediately update the UI
-              setAppointments(prevAppointments =>
-                prevAppointments.map(apt =>
-                  apt._id === appointmentId
-                    ? { ...apt, payment: true }
-                    : apt
-                )
-              )
+    toast.success('Payment Successful ✅')
 
-              // Fetch fresh data from backend
-              await getAppointments()
+    setAppointments(prevAppointments => {
 
-            } else {
+        console.log(
+            '📋 CURRENT APPOINTMENTS:',
+            prevAppointments.map(apt => ({
+                id: apt._id,
+                payment: apt.payment
+            }))
+        )
 
-              toast.error(verifyData.message)
+        return prevAppointments.map(apt =>
+            String(apt._id) === String(appointmentId)
+                ? { ...apt, payment: true }
+                : apt
+        )
 
-            }
+    })
+
+} else {
+
+    console.log('❌ PAYMENT VERIFY FAILED:', verifyData)
+
+    toast.error(verifyData.message)
+
+}
 
           } catch (err) {
 
